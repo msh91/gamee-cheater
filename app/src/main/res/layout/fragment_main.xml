@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkBackground"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="io.github.sharifim91.gameecheater.MainActivity">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/main_url_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/default_margin"
+        android:hint="@string/hint.gamee.url"
+        android:textColorHint="#aaffcb05">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/main_url_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+
+</RelativeLayout>
