@@ -2,5 +2,6 @@
     <string name="app_name">GameeCheater</string>
     <string name="action_settings">Settings</string>
     <string name="hint.gamee.url">Enter Game Url</string>
+    <string name="hint.gamee.score">Enter Score!</string>
     <string name="btn.main.submit">SUBMIT</string>
 </resources>
