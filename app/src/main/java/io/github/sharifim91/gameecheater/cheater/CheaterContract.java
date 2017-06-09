@@ -13,9 +13,14 @@ public interface CheaterContract {
         void showMessage(String message);
 
         void showError(ResponseStatus status);
+
+        void showUrlError();
+
+        void showScoreUrl();
     }
 
     interface ActionListener {
-        void savePoint(String gameeUrl, long score);
+        void attemptSaveScore(String gameeUrl, String score);
+
     }
 }

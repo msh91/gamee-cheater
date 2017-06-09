@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import io.github.sharifim91.gameecheater.R;
 import io.github.sharifim91.gameecheater.data.ResponseStatus;
@@ -28,6 +29,7 @@ public class CheaterFragment extends Fragment implements CheaterContract.ViewLis
     private TextInputLayout layoutScore;
     private CardView cardSubmit;
     private Button btnSubmit;
+    private ProgressBar mProgressBar;
 
     public static CheaterFragment newInstance() {
         Bundle args = new Bundle();
@@ -47,6 +49,7 @@ public class CheaterFragment extends Fragment implements CheaterContract.ViewLis
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_main, container, false);
 
+        mProgressBar = (ProgressBar) root.findViewById(R.id.main_pb);
         editUrl = (TextInputEditText) root.findViewById(R.id.main_url_edit_text);
         layoutUrl = (TextInputLayout) root.findViewById(R.id.main_url_layout);
         editScore = (TextInputEditText) root.findViewById(R.id.main_score_edit_text);
@@ -54,11 +57,19 @@ public class CheaterFragment extends Fragment implements CheaterContract.ViewLis
         cardSubmit = (CardView) root.findViewById(R.id.main_submit_card);
         btnSubmit = (Button) root.findViewById(R.id.main_submit_btn);
 
+        btnSubmit.setOnClickListener(new OnSubmitClickListener());
         return root;
     }
 
     @Override
     public void setProgressIndicator(boolean active) {
+        if (!isAdded()) {
+            return;
+        }
+        layoutScore.setVisibility(active ? View.GONE : View.VISIBLE);
+        layoutUrl.setVisibility(active ? View.GONE : View.VISIBLE);
+        cardSubmit.setVisibility(active ? View.GONE : View.VISIBLE);
+        mProgressBar.setVisibility(active ? View.VISIBLE : View.GONE);
 
     }
 
@@ -70,5 +81,24 @@ public class CheaterFragment extends Fragment implements CheaterContract.ViewLis
     @Override
     public void showError(ResponseStatus status) {
 
+    }
+
+    @Override
+    public void showUrlError() {
+        editUrl.setError(getString(R.string.error_url_wrog));
+        editUrl.requestFocus();
+    }
+
+    @Override
+    public void showScoreUrl() {
+        editScore.setError(getString(R.string.error_score_wrong));
+        editScore.requestFocus();
+    }
+
+    private class OnSubmitClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            mActionListener.attemptSaveScore(editUrl.getText().toString(), editScore.getText().toString());
+        }
     }
 }
