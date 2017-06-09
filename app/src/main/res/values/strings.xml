@@ -4,4 +4,7 @@
     <string name="hint.gamee.url">Enter Game Url</string>
     <string name="hint.gamee.score">Enter Score!</string>
     <string name="btn.main.submit">SUBMIT</string>
+    <string name="error_connection">Connection failed...</string>
+    <string name="error_response_wrong">Bad Response...</string>
+    <string name="error_response_empty">No Response</string>
 </resources>
