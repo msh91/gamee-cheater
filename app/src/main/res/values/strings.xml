@@ -7,4 +7,6 @@
     <string name="error_connection">Connection failed...</string>
     <string name="error_response_wrong">Bad Response...</string>
     <string name="error_response_empty">No Response</string>
+    <string name="error.url.wrog">Please enter a valid gameeUrl</string>
+    <string name="error.score.wrong">Please a valid score first!</string>
 </resources>
