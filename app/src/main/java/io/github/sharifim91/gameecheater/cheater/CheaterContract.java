@@ -1,5 +1,6 @@
 package io.github.sharifim91.gameecheater.cheater;
 
+import io.github.sharifim91.gameecheater.data.GameeScore;
 import io.github.sharifim91.gameecheater.data.ResponseStatus;
 
 /**
@@ -21,6 +22,8 @@ public interface CheaterContract {
 
     interface ActionListener {
         void attemptSaveScore(String gameeUrl, String score);
+
+        void prepareSaveScore(GameeScore score, String gameDetail);
 
     }
 }
