@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import io.github.sharifim91.gameecheater.R;
+import io.github.sharifim91.gameecheater.cheater.CheaterFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.main_container, CheaterFragment.newInstance(), CheaterFragment.FAGMENT_NAME)
+                .commit();
     }
 
     @Override

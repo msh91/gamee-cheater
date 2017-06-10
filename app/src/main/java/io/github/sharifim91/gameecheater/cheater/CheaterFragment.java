@@ -12,9 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import io.github.sharifim91.gameecheater.R;
+import io.github.sharifim91.gameecheater.api.ApiService;
+import io.github.sharifim91.gameecheater.api.ServiceGenerator;
 import io.github.sharifim91.gameecheater.data.ResponseStatus;
+import io.github.sharifim91.gameecheater.data.repositories.GameeRepositoryIml;
 
 /**
  * Created by sharifi on 6/9/17.
@@ -22,6 +26,7 @@ import io.github.sharifim91.gameecheater.data.ResponseStatus;
 
 public class CheaterFragment extends Fragment implements CheaterContract.ViewListener {
     private static final String TAG = "CheaterFragment";
+    public static final String FAGMENT_NAME = CheaterFragment.class.getName();
     private CheaterContract.ActionListener mActionListener;
     private TextInputEditText editUrl;
     private TextInputLayout layoutUrl;
@@ -41,7 +46,7 @@ public class CheaterFragment extends Fragment implements CheaterContract.ViewLis
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mActionListener = new CheaterPresenter(this);
+        mActionListener = new CheaterPresenter(this, new GameeRepositoryIml(ServiceGenerator.createService(ApiService.class)));
     }
 
     @Nullable
@@ -75,12 +80,19 @@ public class CheaterFragment extends Fragment implements CheaterContract.ViewLis
 
     @Override
     public void showMessage(String message) {
-
+        if (!isAdded()) {
+            return;
+        }
+        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void showError(ResponseStatus status) {
-
+        if (!isAdded()) {
+            return;
+        }
+        setProgressIndicator(false);
+        showMessage(status.getErrorMessage(getContext()));
     }
 
     @Override

@@ -46,11 +46,11 @@ public final class ServiceGenerator {
      * @param <S>
      * @return
      */
-    public static <S> S createService(Class<S> serviceClass, String token) {
+    public static <S> S createService(Class<S> serviceClass) {
         final OkHttpClient build = new OkHttpClient
                 .Builder()
                 .readTimeout(20, TimeUnit.SECONDS)
-                .addInterceptor(new LoggerInterceptor(token))
+                .addInterceptor(new LoggerInterceptor())
                 .build();
 
         return retrofit.client(build).build().create(serviceClass);
@@ -63,14 +63,7 @@ public final class ServiceGenerator {
      */
     private static class LoggerInterceptor implements Interceptor {
 
-        private final String token;
-
-        public LoggerInterceptor(String token) {
-            if (!TextUtils.isEmpty(token)) {
-                this.token = "Token " + token;
-            } else {
-                this.token = "";
-            }
+        public LoggerInterceptor() {
         }
 
         @Override
@@ -81,7 +74,6 @@ public final class ServiceGenerator {
             final Request request = requestBuilder
                     .url(original.url())
                     .header("Accept-Language", "fa")
-                    .header("Authorization", token)
                     .method(original.method(), original.body()).build();
 
             Log.d(TAG, String.format("Sending Request %s on %s%n%s ",
