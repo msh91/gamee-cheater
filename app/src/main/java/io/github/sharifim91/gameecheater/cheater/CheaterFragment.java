@@ -7,9 +7,14 @@ import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ValueCallback;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -64,6 +69,13 @@ public class CheaterFragment extends Fragment implements CheaterContract.ViewLis
 
         btnSubmit.setOnClickListener(new OnSubmitClickListener());
         return root;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        editUrl.setText("https://www.gameeapp.com/game/YFFGD9Q~telegram:inline~2154886638353546419~70107343~Mohammad~BAAAAEed__9_wR_CHp5bu6lSQfg#tgShareScoreUrl=tg%3A%2F%2Fshare_game_score%3Fhash%3DkBmHIajf_DPewW9WEPpjgSlNIXhmbJXwKFWo-m8XubI");
+
     }
 
     @Override

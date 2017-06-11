@@ -49,7 +49,7 @@ public final class ServiceGenerator {
     public static <S> S createService(Class<S> serviceClass) {
         final OkHttpClient build = new OkHttpClient
                 .Builder()
-                .readTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(200, TimeUnit.SECONDS)
                 .addInterceptor(new LoggerInterceptor())
                 .build();
 
@@ -74,6 +74,8 @@ public final class ServiceGenerator {
             final Request request = requestBuilder
                     .url(original.url())
                     .header("Accept-Language", "fa")
+//                    .header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36")
+//                    .header("host", "bots.gameeapp.com")
                     .method(original.method(), original.body()).build();
 
             Log.d(TAG, String.format("Sending Request %s on %s%n%s ",

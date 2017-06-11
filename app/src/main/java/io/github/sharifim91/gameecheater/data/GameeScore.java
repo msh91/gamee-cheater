@@ -50,4 +50,14 @@ public class GameeScore {
     public void setHash(String hash) {
         this.hash = hash;
     }
+
+    @Override
+    public String toString() {
+        return "GameeScore{" +
+                "score=" + score +
+                ", gameeUrl='" + gameeUrl + '\'' +
+                ", playTime=" + playTime +
+                ", hash='" + hash + '\'' +
+                '}';
+    }
 }
